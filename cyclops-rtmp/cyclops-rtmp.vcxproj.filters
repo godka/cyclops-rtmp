@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="IniFile.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="librtmp_send264.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mythAvlist.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MythSocket.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mythStreamDecoder.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mythVirtualDecoder.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sps_decode.h" />
+    <ClInclude Include="IniFile.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="librtmp_send264.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MythConfig.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="mythAvlist.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MythSocket.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="mythVirtualDecoder.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libcurl.lib" />
+    <Library Include="librtmp.lib" />
+    <Library Include="SDL2.lib" />
+    <Library Include="SDL2main.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="headers">
+      <UniqueIdentifier>{5ca6967a-c3d3-44d1-9951-3a481915d4b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{023a74d0-8f45-459c-ad0d-92f2453f88e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
