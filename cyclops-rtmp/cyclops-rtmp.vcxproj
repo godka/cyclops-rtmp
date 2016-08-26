@@ -33,10 +33,10 @@
     <ClInclude Include="sps_decode.h" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="libcurl.lib" />
     <Library Include="librtmp.lib" />
     <Library Include="SDL2.lib" />
     <Library Include="SDL2main.lib" />
-    <Library Include="SDL2_net.lib" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E146E4F1-919B-4CE8-8E0F-09B66F99076A}</ProjectGuid>

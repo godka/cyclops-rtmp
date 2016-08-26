@@ -26,7 +26,6 @@ mythAvlist::mythAvlist(void)
 {
 	listcount = 0;
 	this->startread = false;
-	this->mutex = SDL_CreateMutex();
 	this->totalptr = 0;
 	mBufferSize = AVBUFFERSIZE;
 	InitalList();
@@ -51,7 +50,6 @@ mythAvlist::mythAvlist(int BufferSize)
 {
 	listcount = 0;
 	this->startread = false;
-	mutex = SDL_CreateMutex();
 	mBufferSize = BufferSize;
 	//totalbuffer = (unsigned char*)SDL_malloc(BufferSize * 1024 * 1024);
 	totalptr = 0;
@@ -135,7 +133,6 @@ int mythAvlist::get(unsigned char* buf, int len){
 }
 
 PacketQueue *mythAvlist::get(int freePacket){
-	SDL_LockMutex(this->mutex);
 	PacketQueue *tmp;
 	if (this->listwrite - this->listread == 1 ||
 		this->listwrite - this->listread == 0 ||
@@ -157,7 +154,6 @@ PacketQueue *mythAvlist::get(int freePacket){
 		}
 	}
 	listread %= AVFRAMECOUNT;
-	SDL_UnlockMutex(this->mutex);
 	return tmp;
 }
 unsigned char* mythAvlist::putcore(unsigned char* data,unsigned int datasize){
@@ -198,8 +194,6 @@ int mythAvlist::release(PacketQueue *pack)
 	return 0;
 }
 int mythAvlist::put(unsigned char* data,unsigned int length){	
-	if (!mutex){ return 1; }
-	SDL_LockMutex(this->mutex);
 	if(listwrite >= AVFRAMECOUNT)listwrite = 0;
 	PacketQueue *tmp = &ListPacket[listwrite];
 
@@ -211,13 +205,9 @@ int mythAvlist::put(unsigned char* data,unsigned int length){
 	tmp->h264Packet = putcore(data, length);
 	listwrite++;
 	//LOGE("H264listcount=%d\n",listwrite);
-	SDL_UnlockMutex(this->mutex);
 	return 0;
 }
 int mythAvlist::free(){
-	if (mutex)
-		SDL_DestroyMutex(mutex);
-	mutex = NULL;
 	if (ListPacket)
 		delete [] ListPacket;
 	ListPacket = NULL;

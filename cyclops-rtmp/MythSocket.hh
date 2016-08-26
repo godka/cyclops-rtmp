@@ -1,38 +1,30 @@
 #pragma once
-#include "MythConfig.hh"
-#include <string.h>
+#define CURL_STATICLIB  //HTTP_ONLY
+#include "curl/curl.h"
+#include "SDL2/SDL.h"
+
 class MythSocket
 {
 public:
-	int socket_SendStr(const char* str, int length = -2);
-	int socket_ReceiveData(char* recvBuf, int recvLength, int timeout = 500);
-	int socket_CloseSocket(int handle = 0);
-	int socket_ReceiveDataLn2(char* recvBuf, int recvLength, char* lnstr);
-	static MythSocket* CreateNew(const char* ip, int port){
-		return new MythSocket(ip, port);
-	}
-	static MythSocket* CreateNew(){
-		return new MythSocket();
-	}
-	void generateSock(TCPsocket msock);
-	~MythSocket();
-	int active;
-	int hasclosed;
-	int isPush;
-	TCPsocket sock;
-	IPaddress peer;
-	void* addtionaldata;
-	void* data;
-	void* server;
-private:
-	bool isrunning;
-	//char* downbuffer;
-	int downlength;
-	int maxlength;
-	SDLNet_SocketSet socketset;
-	int socket_strcmp(char* buff, char*str, int length);
+	int SendStr(const char* str,int length = -2);
+	int ReceiveData(char* recvBuf,int recvLength);
+	int CloseSocket();
+	int ReceiveDataLn(char* recvBuf,int recvLength,char* lnstr);
+	static MythSocket *CreateNew(const char* ip, u_short port);
+	~MythSocket(void);
 protected:
-	MythSocket(const char* ip, int port);
+	char* downbuffer;
+	int downlength;
+	CURL *curl;
+	CURLcode res;
+	long sockextr;
+	curl_socket_t sockfd;
 	MythSocket();
+	MythSocket(const char* ip, u_short port);
+private:
+	int BindAddressPort(const char* ip, u_short port);
+	int cmp(char* buff, char*str, int length);
+	int InitalSocket();
+	int wait_on_socket(curl_socket_t sockfd, int for_recv, long timeout_ms);
 };
 

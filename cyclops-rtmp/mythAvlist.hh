@@ -26,7 +26,6 @@ protected:
 	mythAvlist(int BufferSize);
 	//int InitalList(void);
 	int abort_request;
-    SDL_mutex *mutex;
 	unsigned char* totalbuffer;
 	unsigned int totalptr;
 	unsigned int listcount;

@@ -45,14 +45,14 @@ void mythStreamDecoder::stop(){
 int mythStreamDecoder::SendBufferBlock(const char* tmpsendstr){
 	while (flag == 0){
 		if (msocket){
-			if (msocket->socket_SendStr(tmpsendstr) == 0){
+			if (msocket->SendStr(tmpsendstr) == 0){
 				return 0;
 				break;
 			}
 			else{
 				printf("start to reconnect\n");
 				SDL_Delay(1000);
-				msocket->socket_CloseSocket();
+				msocket->CloseSocket();
 				delete msocket;
 				msocket = MythSocket::CreateNew(m_ip, m_port);
 			}
@@ -70,14 +70,14 @@ int mythStreamDecoder::MainLoop(){
 		SendBufferBlock(tmpsendstr);
 		SDL_Delay(100);
 		while (flag == 0){
-			int rc = msocket->socket_ReceiveDataLn2(buf, BUFF_COUNT, "Content_Length: ");
+			int rc = msocket->ReceiveDataLn(buf, BUFF_COUNT, "Content_Length: ");
 			if (rc > 0) {
 				m_count += rc;
 				put((unsigned char*) buf, rc);
-			}else if(rc == -2){
+			}else if(rc == 0){
 				printf("start to reconnect\n");
 				SDL_Delay(1000);
-				msocket->socket_CloseSocket();
+				msocket->CloseSocket();
 				delete msocket;
 				msocket = MythSocket::CreateNew(m_ip, m_port);
 				SendBufferBlock(tmpsendstr);
@@ -86,7 +86,7 @@ int mythStreamDecoder::MainLoop(){
 			SDL_PollEvent(NULL);
 			SDL_Delay(1);
 		}
-		msocket->socket_CloseSocket();
+		msocket->CloseSocket();
 	}
 	delete [] buf;
 	delete msocket;
