@@ -195,7 +195,6 @@ int MythSocket::ReceiveDataLn(char* recvBuf, int recvLength, char* lnstr){
 
 int MythSocket::CloseSocket()
 {
-	delete [] downbuffer;
 	curl_easy_cleanup(curl);
 	return 0;
 }
@@ -207,7 +206,6 @@ MythSocket::MythSocket(const char* ip, u_short port)
 	InitalSocket();
 	BindAddressPort(ip, port);
 	//buffptr = 0;
-	downbuffer = new char[4097];
 	downlength = 0;
 }
 

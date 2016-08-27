@@ -13,7 +13,7 @@ public:
 	static MythSocket *CreateNew(const char* ip, u_short port);
 	~MythSocket(void);
 protected:
-	char* downbuffer;
+	char downbuffer[4097];
 	int downlength;
 	CURL *curl;
 	CURLcode res;
