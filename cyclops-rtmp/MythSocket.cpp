@@ -174,7 +174,7 @@ int MythSocket::ReceiveDataLn(char* recvBuf, int recvLength, char* lnstr){
 						int returnvalue = contentlength;
 						int tmplen = len - i - length > contentlength ? contentlength : len - i - length;
 						if (tmplen < 0)tmplen = 0;
-						memcpy(recvBuf, &recv[i + length], tmplen);
+						SDL_memcpy(recvBuf, &recv[i + length], tmplen);
 						tmpptr += tmplen;
 						contentlength -= tmplen;
 						while (contentlength > 0){
