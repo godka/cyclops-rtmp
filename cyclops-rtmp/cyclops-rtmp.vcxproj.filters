@@ -24,7 +24,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sps_decode.h" />
     <ClInclude Include="IniFile.h">
       <Filter>headers</Filter>
     </ClInclude>
@@ -41,6 +40,9 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="mythVirtualDecoder.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sps_decode.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
