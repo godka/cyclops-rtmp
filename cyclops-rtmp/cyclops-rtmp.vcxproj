@@ -11,26 +11,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dll.cpp" />
     <ClCompile Include="IniFile.c" />
-    <ClCompile Include="librtmp_send264.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="mythAvlist.cpp" />
+    <ClCompile Include="mythSimpleRTMP.cpp" />
     <ClCompile Include="MythSocket.cpp" />
     <ClCompile Include="mythStreamDecoder.cpp" />
     <ClCompile Include="mythVirtualDecoder.cpp" />
     <ClCompile Include="main.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="mythVirtualRTMP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dll.h" />
     <ClInclude Include="IniFile.h" />
-    <ClInclude Include="librtmp_send264.h" />
     <ClInclude Include="mythAvlist.hh" />
     <ClInclude Include="MythConfig.hh" />
+    <ClInclude Include="mythSimpleRTMP.hh" />
     <ClInclude Include="MythSocket.hh" />
     <ClInclude Include="mythVirtualDecoder.hh" />
-    <ClInclude Include="sps_decode.h" />
+    <ClInclude Include="mythVirtualRTMP.hh" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="libcurl.lib" />

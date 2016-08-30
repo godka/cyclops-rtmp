@@ -4,9 +4,6 @@
     <ClCompile Include="IniFile.c">
       <Filter>sources</Filter>
     </ClCompile>
-    <ClCompile Include="librtmp_send264.cpp">
-      <Filter>sources</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>sources</Filter>
     </ClCompile>
@@ -22,12 +19,18 @@
     <ClCompile Include="mythVirtualDecoder.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="dll.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mythVirtualRTMP.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="mythSimpleRTMP.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IniFile.h">
-      <Filter>headers</Filter>
-    </ClInclude>
-    <ClInclude Include="librtmp_send264.h">
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="MythConfig.hh">
@@ -42,7 +45,13 @@
     <ClInclude Include="mythVirtualDecoder.hh">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="sps_decode.h">
+    <ClInclude Include="mythVirtualRTMP.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="mythSimpleRTMP.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="dll.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
