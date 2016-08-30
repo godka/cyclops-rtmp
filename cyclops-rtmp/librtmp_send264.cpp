@@ -426,6 +426,7 @@ int ReadFirstNaluFromBuf(NaluUnit &nalu,int (*read_buffer)(uint8_t *buf, int buf
 gotnal_head:
 		//normal case:the whole nal is in this m_pFileBuf
 		naltail_pos = nalhead_pos;  
+		nalu.size = 0;
 		while (naltail_pos<m_nFileBufSize)  
 		{  
 			if(m_pFileBuf[naltail_pos++] == 0x00 && 
@@ -650,7 +651,7 @@ int RTMP264_Send(int (*read_buffer)(unsigned char *buf, int buf_size))
 	int bKeyframe  = (naluUnit.type == 0x05) ? TRUE : FALSE;
 	while(SendH264Packet(naluUnit.data,naluUnit.size,bKeyframe,tick))  
 	{    
-		printf("NALU size:%8d\n",naluUnit.size);
+		printf("Sending Buffer:%8d\n",naluUnit.size);
 		if(!ReadOneNaluFromBuf(naluUnit,read_buffer))
 			break;
 		if(naluUnit.type == 0x07 || naluUnit.type == 0x08)

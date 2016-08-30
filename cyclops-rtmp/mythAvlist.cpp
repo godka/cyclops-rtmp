@@ -32,6 +32,7 @@ mythAvlist::mythAvlist(void)
 }
 int mythAvlist::InitalList(){
 	//inital list
+	firstFrame = true;
 	totalbuffer = new unsigned char[mBufferSize * 1024 * 1024];
 	ListPacket = new PacketQueue[AVFRAMECOUNT];
 	for(int i = 0;i < AVFRAMECOUNT;i++){
@@ -65,13 +66,42 @@ mythAvlist::~mythAvlist(void)
 {
 	free();
 }
+bool mythAvlist::IsIframe(PacketQueue *pack)
+{
+	if (pack){
+		if (pack->h264PacketLength > 4){
+			unsigned char* tmp = pack->h264Packet;
+			int Nalu = 0;
+			if (tmp[0] == 0 && tmp[1] == 0 && tmp[2] == 0 && tmp[3] == 1){
+				Nalu = tmp[4];
+			}
+			else if (tmp[0] == 0 && tmp[1] == 0 && tmp[2] == 1){
+				Nalu = tmp[3];
+			}
+			int tmpnal = Nalu & 0x1f;
+			if (tmpnal == 5 || tmpnal == 7 || tmpnal == 8){
+				return true;
+			}
+		}
+	}
+	return false;
+}
 int mythAvlist::getDataFromStream(unsigned char* buf, int len){
 	int retlen = 0;
 	PacketQueue* pkt = NULL;
 	while (1){
 		SDL_PollEvent(NULL);
 		pkt = get();
-		if (pkt)break;
+		if (pkt){
+			if (firstFrame){
+				if (IsIframe(pkt)){
+					firstFrame = false;
+					break;
+				}else
+					continue;
+			}
+			break;
+		}
 		SDL_Delay(1);
 	}		
 	if (pkt->h264PacketLength > len){

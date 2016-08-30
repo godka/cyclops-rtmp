@@ -6,6 +6,7 @@ class mythAvlist
 public:
 	static mythAvlist* CreateNew(int BufferSize = 0);
 	~mythAvlist(void);
+	bool IsIframe(PacketQueue *pack);
 	PacketQueue *get(int freePacket = 0);
 	int get(unsigned char* buf, int len);
 	int put(unsigned char* data, unsigned int length);
@@ -20,6 +21,7 @@ private:
 	int getDataFromBuf(unsigned char* buf, int len);
 	int getSingleStep(unsigned char* buf, int len);
 	int getDataFromStream(unsigned char* buf, int len);
+	bool firstFrame;
 protected:
 	bool startread;
 	mythAvlist(void);

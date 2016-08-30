@@ -109,7 +109,7 @@ int MythSocket::ReceiveData(char* recvBuf, int recvLength)
 {
 	size_t iolen;
 	if (curl){
-		wait_on_socket(sockfd, 1, 1000L);
+		wait_on_socket(sockfd, 1, 10000L);
 		res = curl_easy_recv(curl, recvBuf, recvLength, &iolen);
 		if (res != 0){
 			printf("error!\n");
