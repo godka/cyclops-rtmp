@@ -10,25 +10,17 @@
 #	include "SDL_net.h"
 #endif
 #include "IniFile.h"
-//#if (defined _WIN32) || (defined WIN32)
-//#	
-//#	ifdef _DEBUG
-//#		pragma comment(lib,"libcurl_a_debug.lib")
-//#	else
-//#		pragma comment(lib,"libcurl.lib")
-//#	endif
-//
-//#	pragma comment(lib,"winmm.lib")
-//#	pragma comment(lib,"imm32.lib")
-//#	pragma comment(lib,"version.lib")
-//#	pragma comment(lib,"wsock32.lib")
-//#	pragma comment(lib,"iphlpapi.lib")
-//#	pragma comment(lib,"ws2_32.lib")
-//#	pragma comment(lib,"wldap32.lib"
-//#	pragma comment(lib,"SDL2.lib")
-//#	pragma comment(lib,"SDL2main.lib")
-//#	pragma comment(lib,"SDL2_net.lib")
-//#endif
+#if (defined _WIN32) || (defined WIN32)
+#	pragma comment(lib,"winmm.lib")
+#	pragma comment(lib,"imm32.lib")
+#	pragma comment(lib,"version.lib")
+#	pragma comment(lib,"wsock32.lib")
+#	pragma comment(lib,"iphlpapi.lib")
+#	pragma comment(lib,"SDL2.lib")
+#	pragma comment(lib,"SDL2main.lib")
+#	pragma comment(lib,"ws2_32.lib")
+#	pragma comment(lib,"wldap32.lib")
+#endif
 
 #define mythcmp(A) strcmp(input,A) == 0
 #define streamserverport 5834

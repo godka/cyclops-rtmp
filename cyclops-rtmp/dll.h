@@ -13,6 +13,6 @@
 #endif
 
 HBAPI void* MYTHAPI RTMPInit(char* rtmplink);
-HBAPI int MYTHAPI BigPotInputVideo(void* handle, char* filename);
-HBAPI int MYTHAPI BigPotSeek(void* handle, int seek);
-HBAPI int MYTHAPI BigPotClose(void* handle);
+HBAPI int MYTHAPI RTMPStart(void* ptr);
+HBAPI int MYTHAPI RTMPPutH264Data(void* ptr, char* data, int len);
+HBAPI int MYTHAPI RTMPClose(void* ptr);

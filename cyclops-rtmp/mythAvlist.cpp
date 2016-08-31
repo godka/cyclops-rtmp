@@ -33,6 +33,7 @@ mythAvlist::mythAvlist(void)
 int mythAvlist::InitalList(){
 	//inital list
 	firstFrame = true;
+	continueGet = true;
 	totalbuffer = new unsigned char[mBufferSize * 1024 * 1024];
 	ListPacket = new PacketQueue[AVFRAMECOUNT];
 	for(int i = 0;i < AVFRAMECOUNT;i++){
@@ -244,5 +245,10 @@ int mythAvlist::free(){
 	if (totalbuffer)
 		delete [] totalbuffer;
 	totalbuffer = NULL;
+	return 0;
+}
+
+int mythAvlist::StopGet()
+{
 	return 0;
 }

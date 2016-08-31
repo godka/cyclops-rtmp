@@ -4,6 +4,7 @@
 mythVirtualRTMP::mythVirtualRTMP(const char* url)
 {
 	rtmpurl = url;
+	isPushing = false;
 }
 
 int mythVirtualRTMP::read_buffer(unsigned char *buf, int buf_size)
@@ -374,6 +375,7 @@ int mythVirtualRTMP::ReadFirstNaluFromBuf(NaluUnit &nalu)
 
 int mythVirtualRTMP::Start()
 {
+	isPushing = true;
 	if (rtmpurl == "")
 		return 1;
 	RTMP264_Connect(rtmpurl.c_str());
@@ -381,6 +383,13 @@ int mythVirtualRTMP::Start()
 	RTMP264_Send();
 	//断开连接并释放相关资源
 	RTMP264_Close();
+	return 0;
+}
+
+int mythVirtualRTMP::Stop()
+{
+	RTMP264_Close();
+	return 0;
 }
 
 mythVirtualRTMP::~mythVirtualRTMP()
@@ -494,7 +503,7 @@ int mythVirtualRTMP::RTMP264_Connect(const char* url)
 	nalhead_pos = 0;
 	m_nFileBufSize = BUFFER_SIZE;
 	m_pFileBuf = (unsigned char*) malloc(BUFFER_SIZE);
-	m_pFileBuf_tmp = (unsigned char*) malloc(BUFFER_SIZE * 10);
+	m_pFileBuf_tmp = (unsigned char*) malloc(BUFFER_SIZE);
 	InitSockets();
 
 	m_pRtmp = RTMP_Alloc();
@@ -578,7 +587,7 @@ int mythVirtualRTMP::RTMP264_Send()
 	unsigned int tick_gap = 1000 / metaData.nFrameRate;
 	ReadOneNaluFromBuf(naluUnit);
 	int bKeyframe = (naluUnit.type == 0x05) ? TRUE : FALSE;
-	while (SendH264Packet(naluUnit.data, naluUnit.size, bKeyframe, tick))
+	while (SendH264Packet(naluUnit.data, naluUnit.size, bKeyframe, tick) && isPushing)
 	{
 		printf("Sending Buffer:%8d\n", naluUnit.size);
 		if (!ReadOneNaluFromBuf(naluUnit))
@@ -587,6 +596,7 @@ int mythVirtualRTMP::RTMP264_Send()
 			continue;
 		bKeyframe = (naluUnit.type == 0x05) ? TRUE : FALSE;
 		tick += tick_gap;
+		SDL_Delay(40);
 	}
 	free(metaData.Sps);
 	free(metaData.Pps);

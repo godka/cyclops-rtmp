@@ -28,6 +28,9 @@
     <ClCompile Include="mythSimpleRTMP.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="mythStreamRTMP.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IniFile.h">
@@ -54,6 +57,9 @@
     <ClInclude Include="dll.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="mythStreamRTMP.hh">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="libcurl.lib" />
@@ -68,5 +74,8 @@
     <Filter Include="sources">
       <UniqueIdentifier>{023a74d0-8f45-459c-ad0d-92f2453f88e2}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cyclops-rtmp.def" />
   </ItemGroup>
 </Project>

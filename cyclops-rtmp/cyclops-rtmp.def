@@ -1,0 +1,7 @@
+LIBRARY			"cyclops-rtmp"
+
+
+EXPORTS			RTMPInit
+EXPORTS			RTMPStart
+EXPORTS			RTMPPutH264Data
+EXPORTS			RTMPClose

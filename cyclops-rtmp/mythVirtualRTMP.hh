@@ -63,7 +63,9 @@ public:
 	static mythVirtualRTMP* CreateNew(const char* url){
 		return new mythVirtualRTMP(url);
 	}
+	bool isPushing;
 	int Start();
+	int Stop();
 	~mythVirtualRTMP();
 protected:
 	mythVirtualRTMP(const char* url);

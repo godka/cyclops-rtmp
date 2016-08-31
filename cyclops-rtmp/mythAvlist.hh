@@ -13,6 +13,7 @@ public:
 	//int put(unsigned char** dataline,unsigned int *datasize,unsigned int width,unsigned int height);
 	int release(PacketQueue *pack);
 	int free();
+	int StopGet();
 private:
 	int InitalList();
 	int mBufferSize;
@@ -21,6 +22,7 @@ private:
 	int getDataFromBuf(unsigned char* buf, int len);
 	int getSingleStep(unsigned char* buf, int len);
 	int getDataFromStream(unsigned char* buf, int len);
+	bool continueGet;
 	bool firstFrame;
 protected:
 	bool startread;
